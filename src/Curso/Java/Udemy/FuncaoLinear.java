@@ -5,7 +5,9 @@ public class FuncaoLinear {
     private double b;
 
     public FuncaoLinear(double a , double b){
-        this.a = a;
+
+
+            this.a = a;
         this.b = b;
     }
     public double raiz(){
