@@ -7,7 +7,8 @@ public class Carrossel extends Atracao {
     }
 
     public void setIdade_minima(int idade_minima) {
-        this.idade_minima = idade_minima;
+        if(idade_minima > 0)
+            this.idade_minima = idade_minima;
     }
 
     public Carrossel(String nome, int capacidade, double preco, int idade_minima) {

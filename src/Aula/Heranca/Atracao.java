@@ -5,7 +5,8 @@ public class Atracao {
     protected double preco;
 
     public void setPreco(double preco) {
-        this.preco = preco;
+        if(preco > 0)
+            this.preco = preco;
     }
 
     public double getPreco() {
@@ -21,7 +22,8 @@ public class Atracao {
     }
 
     public void setCapacidade(int capacidade) {
-        this.capacidade = capacidade;
+        if(capacidade > 0)
+            this.capacidade = capacidade;
     }
 
     public int getCapacidade() {

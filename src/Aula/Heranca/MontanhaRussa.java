@@ -3,7 +3,8 @@ public class MontanhaRussa extends Atracao{
     protected double altura_minima;
 
     public void setAltura_minima(double altura_minima) {
-        this.altura_minima = altura_minima;
+        if(altura_minima > 0)
+            this.altura_minima = altura_minima;
     }
 
     public double getAltura_minima() {
