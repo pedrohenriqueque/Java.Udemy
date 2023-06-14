@@ -11,7 +11,7 @@ public class mEmployee {
         int qtdEmployers = teclado.nextInt();
 
         for(int i = 1 ; i <= qtdEmployers ; i++){
-            System.out.println("Employee #"+i+1 +" data: ");
+            System.out.println("Employee #"+i +" data: ");
             System.out.println("Outsourced (y/n)? ");
             char opcao = teclado.next().charAt(0);
             System.out.println("Name: ");
