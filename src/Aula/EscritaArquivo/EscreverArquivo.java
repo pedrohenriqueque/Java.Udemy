@@ -1,3 +1,4 @@
+package Aula.EscritaArquivo;
 
 import java.util.Scanner;
 import java.io.FileWriter;

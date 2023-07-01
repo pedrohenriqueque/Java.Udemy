@@ -1,3 +1,5 @@
+package Aula.EscritaArquivo;
+
 public class Produto implements Comparable {
     private String codigo;
     private String produto;

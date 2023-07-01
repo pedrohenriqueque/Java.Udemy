@@ -1,3 +1,5 @@
+package Aula.EscritaArquivo;
+
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
