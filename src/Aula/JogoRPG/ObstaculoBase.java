@@ -6,7 +6,7 @@ public abstract class ObstaculoBase implements Obstaculo {
 
     private String nome;
 
-    public abstract int interageComPersonagem(PersonagemBase personagemBase);
+    public abstract void interageComPersonagem(PersonagemBase personagemBase);
 
     public String getNome() {
         return nome;

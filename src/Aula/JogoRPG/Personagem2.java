@@ -1,17 +1,28 @@
 package Aula.JogoRPG;
 
+import java.util.ArrayList;
+
 public class Personagem2 extends PersonagemBase{
     @Override
     public void contarHistoria(){
-        System.out.println("Elysia é uma maga destemida que domina a arte da luz." +
-                " Ela cresceu isolada em uma floresta mágica, onde aprendeu " +
-                "a controlar a luz com perfeição.");
+        super.contarHistoria();
+        System.out.println("Elysia é uma maga destemida que domina a arte da luz. Ela cresceu isolada em\n" +
+                "uma floresta mágica, onde aprendeu a controlar a luz com perfeição.");
     }
 
     @Override
-    public void poderEspecial() {
-        int dano = 30;
-        System.out.println("Elysia utilizou seu poder espeical a Tempestade de Luz e causou " +dano +" aos seus inimigos");
+    public int poderEspecial() {
+        int dano = numeroAleatorio(1,1);
+
+        for (Item item : inventario) {
+            if (item instanceof TomoAmplificador) {
+                dano *= 2;
+            }else if(item instanceof ChapeuDaMagia){
+                dano += 5;
+            }
+        }
+        System.out.println("Elysia utilizou seu poder especial a Tempestade de Luz e causou " +dano +" aos seus inimigos");
+        return dano;
     }
 
     @Override
@@ -27,8 +38,9 @@ public class Personagem2 extends PersonagemBase{
     }
 
     public Personagem2(){
+        inventario = new ArrayList<>();
         setNome("Elysia");
         setIdade(21);
-        setCaracteristica(120);
+        setCaracteristica(110);
     }
 }

@@ -2,9 +2,16 @@ package Aula.JogoRPG;
 
 public class TomoAmplificador extends Item{
 
-    public TomoAmplificador(String nome, String descricao) {
-        super(nome, descricao);
+
+    public TomoAmplificador(){
+        setNome("Tomo Amplificador");
+        setDescricao("O ataque especial recebe o dobro de dano");
     }
 
-
+    public String toString(){
+        return " Nome:"
+                +getNome()
+                +", Descrição: "
+                +getDescricao();
+    }
 }

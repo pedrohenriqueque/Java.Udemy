@@ -1,4 +1,5 @@
 package Aula.JogoRPG;
+import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class PersonagemBase {
@@ -6,8 +7,12 @@ public abstract class PersonagemBase {
     protected int idade;
     protected int caracteristica;
 
-    public abstract void contarHistoria();
-    public abstract void poderEspecial();
+    ArrayList<Item> inventario;
+
+    public void contarHistoria(){
+        System.out.println("Nome: "+getNome() +", Vida: "+getCaracteristica() + ", Idade: "+getIdade());
+    }
+    public abstract int poderEspecial();
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -35,6 +40,17 @@ public abstract class PersonagemBase {
     public int numeroAleatorio(int min, int max) {
         Random rand = new Random();
         return rand.nextInt((max - min) + 1) + min;
+    }
+
+    public void adicionarItem(Item item) {
+        inventario.add(item);
+        if (item instanceof AmuletoDaProtecao) {
+            AmuletoDaProtecao amuleto = (AmuletoDaProtecao) item;
+            int bonusCaracteristica = (int) (caracteristica * 0.15);
+            setCaracteristica(caracteristica + bonusCaracteristica);
+        }
+
+
     }
 
     public abstract void ataque1();

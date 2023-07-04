@@ -1,19 +1,28 @@
 package Aula.JogoRPG;
 
+import java.util.ArrayList;
+
 public class Personagem1 extends PersonagemBase{
     @Override
     public void contarHistoria(){
-        System.out.println("Arthur é um antigo cavaleiro que dedicou sua vida " +
-                "à proteção dos inocentes e à busca pela paz. Ele percorreu " +
-                "terras distantes em busca de conhecimentos ancestrais, " +
-                "e durante suas jornadas, foi agraciado com o dom da Cura " +
-                "Divina.");
+        super.contarHistoria();
+        System.out.println("Arthur é um antigo cavaleiro que dedicou sua vida à proteção dos inocentes e à\n" +
+                "busca pela paz. Ele percorreu terras distantes em busca de conhecimentos\n" +
+                "ancestrais.");
     }
 
     @Override
-    public void poderEspecial() {
-        int curar = 50;
+    public int poderEspecial() {
+        int curar = numeroAleatorio(1,5);
         System.out.println("Arthur utilizou a seu poder especial Cura Divina e curou" +curar + "de vida");
+        for (Item item : inventario) {
+            if (item instanceof TomoAmplificador) {
+                curar *= 2;
+            }else if(item instanceof ChapeuDaMagia){
+                curar += 5;
+            }
+        }
+        return curar;
     }
 
     @Override
@@ -29,6 +38,7 @@ public class Personagem1 extends PersonagemBase{
     }
 
     public Personagem1(){
+        inventario = new ArrayList<>();
         setNome("Arthur");
         setCaracteristica(100);
         setIdade(23);
