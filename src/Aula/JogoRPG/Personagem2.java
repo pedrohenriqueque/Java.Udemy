@@ -12,31 +12,38 @@ public class Personagem2 extends PersonagemBase{
 
     @Override
     public int poderEspecial() {
-        int dano = numeroAleatorio(1,1);
-
-        for (Item item : inventario) {
-            if (item instanceof TomoAmplificador) {
+        int dano = numeroAleatorio(20, 40);
+        for (Item item : inventario)
+            if (item instanceof TomoAmplificador)
                 dano *= 2;
-            }else if(item instanceof ChapeuDaMagia){
-                dano += 5;
-            }
-        }
-        System.out.println("Elysia utilizou seu poder especial a Tempestade de Luz e causou " +dano +" aos seus inimigos");
+
+        System.out.println("Elysia utilizou seu poder especial a Tempestade de Luz e causou " + dano + " aos seus inimigos");
         return dano;
     }
 
     @Override
-    public void ataque1() {
-        int dano = numeroAleatorio(1,15);
-        System.out.println("Elysia utilizou sua habilidade Lâmina Solar e causou"+dano);
+    public int ataque1() {
+       int dano =super.ataque1();
+        System.out.println("Elysia utilizou sua habilidade Lâmina Solar e causou "+dano);
+        return dano;
+
     }
 
     @Override
-    public void ataque2() {
-        int dano = numeroAleatorio(1,8);
+    public int ataque2() {
+        int dano = super.ataque2();
         System.out.println("Elysia utilizou sua habilidade Raio Fulgante e causou "+dano +"aos seus inimigos");
+        return dano;
     }
 
+    public int atacar() {
+        System.out.println("SUA VEZ DE ATACAR!\n"+
+                "Qual habilidade deseja utilizar?\n"+
+                "1 - Lâmina Solar\n"+
+                "2 - Raio Fulgurante\n"+
+                "3 - Tempestade de Luz\n");
+        return super.atacar();
+    }
     public Personagem2(){
         inventario = new ArrayList<>();
         setNome("Elysia");

@@ -7,5 +7,8 @@ public class AmuletoDaProtecao extends Item{
         setDescricao("O portador ganha um bonus de 15 % da sua vida ");
     }
 
+    public String toString(){
+        return "3 - " + super.toString();
 
+    }
 }

@@ -17,4 +17,14 @@ public class Inimigo {
         Random rand = new Random();
         return rand.nextInt(4) + 1;
     }
+
+    public void receberDano(int dano){
+        vida -= dano;
+     }
+    public String toString(){
+        return "Vida: " +vida;
+    }
+    public Inimigo(){
+        setVida(35);
+    }
 }

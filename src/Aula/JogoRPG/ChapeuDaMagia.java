@@ -7,5 +7,8 @@ public class ChapeuDaMagia extends Item{
         setDescricao("O ataque especial recebe 5 a mais de dano");
     }
 
+    public String toString(){
+        return "2 - " + super.toString();
 
+    }
 }

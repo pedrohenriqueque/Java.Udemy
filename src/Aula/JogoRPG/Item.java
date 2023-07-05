@@ -21,8 +21,8 @@ public abstract class Item {
         this.descricao = descricao;
     }
     public String toString(){
-        return " Nome:"
-                +getNome()
+        return
+                getNome()
                 +", Descrição: "
                 +getDescricao();
     }

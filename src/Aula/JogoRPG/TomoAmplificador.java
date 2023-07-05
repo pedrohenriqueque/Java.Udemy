@@ -9,9 +9,7 @@ public class TomoAmplificador extends Item{
     }
 
     public String toString(){
-        return " Nome:"
-                +getNome()
-                +", Descrição: "
-                +getDescricao();
+        return "1 - " + super.toString();
+
     }
 }

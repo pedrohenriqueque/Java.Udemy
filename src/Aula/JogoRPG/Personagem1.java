@@ -26,15 +26,27 @@ public class Personagem1 extends PersonagemBase{
     }
 
     @Override
-    public void ataque1() {
-       int dano = numeroAleatorio(1,15);
+    public int ataque1() {
+        int dano =super.ataque1();
         System.out.println("Arthur utilizou sua habilidade Golpe Divino e causou " +dano);
+        return dano;
     }
 
     @Override
-    public void ataque2() {
-        int dano = numeroAleatorio(1,8);
+    public int ataque2() {
+        int dano = super.ataque2();
         System.out.println("Arthur utilizou sua habilidade Purificação Celeste e causou "+dano +"aos seus inimigos");
+        return dano;
+    }
+
+    @Override
+    public int atacar() {
+        System.out.println("SUA VEZ DE ATACAR!\n"+
+                "Qual habilidade deseja utilizar?\n"+
+                "1 - Golpe Divino\n"+
+                "2 - Purificação Celeste\n"+
+                "3 - Cura Divina\n");
+        return super.atacar();
     }
 
     public Personagem1(){

@@ -2,9 +2,9 @@ package Aula.JogoRPG;
 
 public interface Personagem {
     void contarHistoria();
-    void poderEspecial();
-    void adicionarItem();
+    int poderEspecial();
+    void adicionarItem(Item item);
 
-    void ataque1();
-    void ataque2();
+    int ataque1();
+    int ataque2();
 }

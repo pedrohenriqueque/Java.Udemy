@@ -1,8 +1,9 @@
 package Aula.JogoRPG;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
-public abstract class PersonagemBase {
+public abstract class PersonagemBase implements Personagem {
     protected String nome;
     protected int idade;
     protected int caracteristica;
@@ -50,11 +51,38 @@ public abstract class PersonagemBase {
             setCaracteristica(caracteristica + bonusCaracteristica);
         }
 
-
     }
 
-    public abstract void ataque1();
-    public abstract void ataque2();
+    public int ataque1(){
+        int dano = numeroAleatorio(8,15);
+        for (Item item : inventario) {
+            if(item instanceof ChapeuDaMagia)
+                dano +=5;
+        }
+        return dano;
+    }
+    public int ataque2(){
+        int dano = numeroAleatorio(4,8);
+        for (Item item : inventario) {
+            if(item instanceof ChapeuDaMagia)
+                dano +=5;
+        }
+        return dano;
+    }
 
+    public int atacar(){
+        int danoTotal;
+        Scanner teclado = new Scanner(System.in);
+        int opcao = teclado.nextInt();
+        if (opcao == 1) {
+            danoTotal = ataque1();
+        } else if (opcao == 2) {
+            danoTotal = ataque2();
+        } else {
+            danoTotal = poderEspecial();
+        }
+
+        return danoTotal;
+    }
 
 }
