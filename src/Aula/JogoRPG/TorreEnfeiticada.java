@@ -1,6 +1,7 @@
 package Aula.JogoRPG;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TorreEnfeiticada extends ObstaculoBase {
     ArrayList<Inimigo> inimigos;
@@ -18,10 +19,7 @@ public class TorreEnfeiticada extends ObstaculoBase {
                 if(a.getVida() >= 0) {
                     danoRecebido += a.ataque();
                     a.receberDano(danoCausado);
-                        if(a.getVida() >=0)
-                            System.out.println(a);
-                }else
-                    System.out.println("O Inimigo morreu!");
+                }
             }
             personagemBase.setCaracteristica(personagemBase.getCaracteristica() - danoRecebido);
             if(personagemBase.getCaracteristica() <= 0)
@@ -29,18 +27,44 @@ public class TorreEnfeiticada extends ObstaculoBase {
                         "mostrou um oponente formidável e suas habilidades não foram suficientes para\n" +
                         "derrotá-lo. Apesar de todos os seus esforços, o reino continua envolto em trevas.");
             System.out.println("Você recebeu " + danoRecebido + " dos seus inimigos");
-            System.out.println("Você causou " + danoCausado + " aos seus inimigos");
+            for (int i = 0; i < inimigos.size(); i++) {
+                Inimigo a = inimigos.get(i);
+                if (a.getVida() >= 0) {
+                    System.out.println("Inimigo "+i +" Vida: "+a.getVida());
+                }
+            }
             inimigos.removeIf(inimigo -> inimigo.getVida() <= 0);
         } while (!inimigos.isEmpty() && personagemBase.getCaracteristica() > 0);
-        if(inimigos.isEmpty()) {
-            System.out.println("Você derrotou os inimigos com sucesso!\n"
-                    + "Encontrou uma poção misteriosa! Deseja Toma-lá?\n"
-                    +"1 - SIM!\n 2- NÃO!");
-             personagemBase.setCaracteristica(personagemBase.getCaracteristica() - numeroAleatorio(-10,20));
-            System.out.println("Sua vida agora é "+personagemBase.getCaracteristica());
+            Scanner teclado = new Scanner(System.in);
+            boolean passou = false;
+            do {
+                try {
+                    System.out.println("Encontrou uma poção misteriosa! Deseja Toma-lá?\n"
+                            +"1 - SIM!\n2 - NÃO!");
+                    int opcao = teclado.nextInt();
+                    switch(opcao) {
+                        case 1:
+                            System.out.println("Você tomou a poção!");
+                            personagemBase.setCaracteristica(personagemBase.getCaracteristica() - numeroAleatorio(-10, 20));
+                            System.out.println("Sua vida agora é " + personagemBase.getCaracteristica());
+                            passou = true;
+                            break;
+                        case 2:
+                            System.out.println("Você não tomou a poção!");
+                            passou = true;
+                            break;
+                        default:
+                            throw new IllegalArgumentException();
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Valor Invalido, digite novamente !");
+                }
+            }while (!passou);
+
+
 
         }
-    }
+
 
 
     public TorreEnfeiticada() {

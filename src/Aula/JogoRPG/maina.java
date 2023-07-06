@@ -37,6 +37,7 @@ public class maina {
         Personagem1 arthur = new Personagem1();
         Personagem2 elysia = new Personagem2();
         arthur.contarHistoria();
+        System.out.println("\n");
         elysia.contarHistoria();
     }
 

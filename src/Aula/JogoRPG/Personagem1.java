@@ -13,16 +13,14 @@ public class Personagem1 extends PersonagemBase{
 
     @Override
     public int poderEspecial() {
-        int curar = numeroAleatorio(1,5);
-        System.out.println("Arthur utilizou a seu poder especial Cura Divina e curou" +curar + "de vida");
+        int dano = numeroAleatorio(1,5);
+        System.out.println("Arthur utilizou a seu poder especial Martelo Divino e causou" +dano + "de dano");
         for (Item item : inventario) {
             if (item instanceof TomoAmplificador) {
-                curar *= 2;
-            }else if(item instanceof ChapeuDaMagia){
-                curar += 5;
+                dano *= 2;
             }
         }
-        return curar;
+        return dano;
     }
 
     @Override
