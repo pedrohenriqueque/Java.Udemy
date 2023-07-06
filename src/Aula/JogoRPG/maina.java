@@ -6,6 +6,8 @@ public class maina {
     private static final int OPCAO_ELYSIA = 2;
 
     public static void main(String[] args) {
+        boolean passou = false;
+    do {
         try {
             Scanner teclado = new Scanner(System.in);
             apresentarHistorias();
@@ -20,12 +22,15 @@ public class maina {
             personagem.adicionarItem(itemSelecionado);
 
             jogarLabirinto(personagem);
+            jogarTorre(personagem);
             lutarComLordeDasSombras(personagem);
+            passou = true;
         } catch (InputMismatchException e) {
             System.out.println("Entrada inválida. Por favor, insira um valor numérico.");
         } catch (RuntimeException e) {
             System.out.println("Ocorreu um erro durante a execução do jogo: " + e.getMessage());
         }
+    }while (!passou);
     }
 
     private static void apresentarHistorias() {
@@ -89,6 +94,10 @@ public class maina {
         lorde.combate((PersonagemBase) personagem);
     }
 
+    private static void jogarTorre(Personagem personagem){
+        TorreEnfeiticada torre = new TorreEnfeiticada();
+        torre.interageComPersonagem((PersonagemBase) personagem );
+    }
     private static int lerOpcao(Scanner teclado) {
         while (true) {
             try {
