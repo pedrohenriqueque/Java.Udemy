@@ -1,5 +1,6 @@
 package Aula.JogoRPG;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -70,19 +71,31 @@ public abstract class PersonagemBase implements Personagem {
         return dano;
     }
 
-    public int atacar(){
-        int danoTotal;
-        Scanner teclado = new Scanner(System.in);
-        int opcao = teclado.nextInt();
-        if (opcao == 1) {
-            danoTotal = ataque1();
-        } else if (opcao == 2) {
-            danoTotal = ataque2();
-        } else {
-            danoTotal = poderEspecial();
+    public int atacar() {
+        try {
+
+            int danoTotal;
+            Scanner teclado = new Scanner(System.in);
+            int opcao = teclado.nextInt();
+            switch (opcao) {
+                case 1:
+                    danoTotal = ataque1();
+                    break;
+                case 2:
+                    danoTotal = ataque2();
+                    break;
+                case 3:
+                    danoTotal = poderEspecial();
+                    break;
+                default:
+                    throw new InputMismatchException();
+            }
+            return danoTotal;
+        }catch (InputMismatchException e){
+            System.out.println("Não foi possível atacar, número inválido");
+            return -1;
         }
 
-        return danoTotal;
     }
 
 }

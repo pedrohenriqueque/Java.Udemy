@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        try {
+
             Scanner teclado = new Scanner(System.in);
             Personagem1 arthur = new Personagem1();
             Personagem2 elysia = new Personagem2();
@@ -18,6 +18,8 @@ public class Main {
             System.out.println("1 - Arthur");
             System.out.println("2 - Elysia");
             int opcao = teclado.nextInt();
+
+            boolean valida = false;
             if(opcao == 1) {
                 System.out.println("Você escolheu Arthur");
                 System.out.println("Escolha um Item para o seu inventario: ");
@@ -25,16 +27,35 @@ public class Main {
                 System.out.println(chapeu);
                 System.out.println(amuleto);
                 opcao = teclado.nextInt();
-                if(opcao == 1){
-                    arthur.adicionarItem(tomo);
-                }else if(opcao == 2){
-                    arthur.adicionarItem(chapeu);
-                }else {
-                    arthur.adicionarItem(amuleto);
+            do {
+                try {
+                    switch (opcao) {
+                        case 1:
+                            arthur.adicionarItem(tomo);
+                            valida = true;
+                            break;
+                        case 2:
+                            arthur.adicionarItem(chapeu);
+                            valida = true;
+                            break;
+                        case 3:
+                            arthur.adicionarItem(amuleto);
+                            valida = true;
+                            break;
+                        default:
+                            throw new InputMismatchException();
+                    }
+
+                } catch (InputMismatchException e) {
+                    System.out.println("Opção inválida para escolher um item.");
+                    teclado.nextLine();
                 }
+            }while (!valida);
                 System.out.println("Você chegou ao Labirinto Sombrio");
                 LabirintoSombrio labirintoSombrio = new LabirintoSombrio();
                 labirintoSombrio.labirinto(arthur);
+                TorreEnfeiticada torre = new TorreEnfeiticada();
+                torre.interageComPersonagem(arthur);
                 System.out.println("Você chegou ao castelo do Lorde das Sombras");
                 LordeDasSombras lorde = new LordeDasSombras();
                 lorde.combate(arthur);
@@ -46,25 +67,31 @@ public class Main {
                 System.out.println(chapeu);
                 System.out.println(amuleto);
                 opcao = teclado.nextInt();
-                if(opcao == 1){
-                    elysia.adicionarItem(tomo);
-                }else if(opcao == 2){
-                    elysia.adicionarItem(chapeu);
-                }else {
-                    elysia.adicionarItem(amuleto);
+                switch (opcao) {
+                    case 1:
+                        elysia.adicionarItem(tomo);
+                        break;
+                    case 2:
+                        elysia.adicionarItem(chapeu);
+                        break;
+                    case 3:
+                        elysia.adicionarItem(amuleto);
+                        break;
+                    default:
+                        throw new InputMismatchException("Opção inválida para escolher um item.");
                 }
                 System.out.println("Você chegou ao Labirinto Sombrio");
                 LabirintoSombrio labirintoSombrio = new LabirintoSombrio();
                 labirintoSombrio.labirinto(elysia);
+                TorreEnfeiticada torre = new TorreEnfeiticada();
+                torre.interageComPersonagem(elysia);
                 System.out.println("Você chegou ao castelo do Lorde das Sombras");
                 LordeDasSombras lorde = new LordeDasSombras();
                 lorde.combate(elysia);
+            }else {
+                throw new InputMismatchException("Opção invalida de personagem");
             }
-        } catch (InputMismatchException i) {
-            System.out.println(i.getMessage());
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
         }
 
     }
-}
+

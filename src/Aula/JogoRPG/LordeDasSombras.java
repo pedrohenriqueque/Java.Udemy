@@ -16,7 +16,9 @@ public class LordeDasSombras extends ObstaculoBase{
         }
     }
     public void recebeDano(PersonagemBase personagemBase){
+        do {
             vida -= personagemBase.atacar();
+        }while (personagemBase.atacar() < 0);
         if(vida <= 0){
             System.out.println("Parabéns, herói! Você foi capaz de superar todos os desafios, derrotar o temível\n" +
                     "Lorde das Sombras e trazer a luz de volta ao reino. Sua coragem, habilidade e\n" +
