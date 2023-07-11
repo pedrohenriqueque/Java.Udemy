@@ -49,9 +49,7 @@ public class Produto implements Comparable {
     public int compareTo(Object obj) {
         Produto a = (Produto) obj;
         if (quantidade == a.getQuantidade()) {
-            if (preco < a.getPreco())
-                return -1;
-            else
+
                 return 1;
         } else if (quantidade < a.getQuantidade()) {
             return -1;

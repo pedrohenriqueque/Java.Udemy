@@ -13,14 +13,20 @@ public class Personagem1 extends PersonagemBase{
 
     @Override
     public int poderEspecial() {
-        int dano = numeroAleatorio(1,5);
-        System.out.println("Arthur utilizou a seu poder especial Martelo Divino e causou" +dano + "de dano");
-        for (Item item : inventario) {
-            if (item instanceof TomoAmplificador) {
-                dano *= 2;
+        if (usosPoderEspecial > 0) {
+            usosPoderEspecial--; // Reduzir o número de usos restantes
+            int dano = numeroAleatorio(1, 5);
+            System.out.println("Arthur utilizou o seu poder especial Martelo Divino e causou " + dano + " de dano");
+            for (Item item : inventario) {
+                if (item instanceof TomoAmplificador) {
+                    dano *= 2;
+                }
             }
+            return dano;
+        } else {
+            System.out.println("Você não pode mais usar o poder especial. Limite de usos atingido.");
+            return 0;
         }
-        return dano;
     }
 
     @Override
@@ -43,7 +49,7 @@ public class Personagem1 extends PersonagemBase{
                 "Qual habilidade deseja utilizar?\n"+
                 "1 - Golpe Divino\n"+
                 "2 - Purificação Celeste\n"+
-                "3 - Cura Divina\n");
+                "3 - Martelo Divino(ESPECIAL!) Divina\n");
         return super.atacar();
     }
 

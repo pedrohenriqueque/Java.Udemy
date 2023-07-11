@@ -12,13 +12,20 @@ public class Personagem2 extends PersonagemBase{
 
     @Override
     public int poderEspecial() {
-        int dano = numeroAleatorio(20, 40);
-        for (Item item : inventario)
-            if (item instanceof TomoAmplificador)
-                dano *= 2;
-
-        System.out.println("Elysia utilizou seu poder especial a Tempestade de Luz e causou " + dano + " aos seus inimigos");
-        return dano;
+        if (usosPoderEspecial > 0) {
+            usosPoderEspecial--; // Reduzir o número de usos restantes
+            int dano = numeroAleatorio(20, 40);
+            for (Item item : inventario) {
+                if (item instanceof TomoAmplificador) {
+                    dano *= 2;
+                }
+            }
+            System.out.println("Elysia utilizou seu poder especial a Tempestade de Luz e causou " + dano + " aos seus inimigos");
+            return dano;
+        } else {
+            System.out.println("Você não pode mais usar o poder especial. Limite de usos atingido.");
+            return 0;
+        }
     }
 
     @Override
@@ -41,7 +48,7 @@ public class Personagem2 extends PersonagemBase{
                 "Qual habilidade deseja utilizar?\n"+
                 "1 - Lâmina Solar\n"+
                 "2 - Raio Fulgurante\n"+
-                "3 - Tempestade de Luz\n");
+                "3 - Tempestade de Luz(ESPECIAL!)\n");
         return super.atacar();
     }
     public Personagem2(){

@@ -8,6 +8,7 @@ public abstract class PersonagemBase implements Personagem {
     protected String nome;
     protected int idade;
     protected int caracteristica;
+    protected int usosPoderEspecial = 1;
 
     ArrayList<Item> inventario;
 
@@ -55,7 +56,7 @@ public abstract class PersonagemBase implements Personagem {
     }
 
     public int ataque1(){
-        int dano = numeroAleatorio(8,15);
+        int dano = numeroAleatorio(15,23);
         for (Item item : inventario) {
             if(item instanceof ChapeuDaMagia)
                 dano +=5;
@@ -63,7 +64,7 @@ public abstract class PersonagemBase implements Personagem {
         return dano;
     }
     public int ataque2(){
-        int dano = numeroAleatorio(4,8);
+        int dano = numeroAleatorio(4,9);
         for (Item item : inventario) {
             if(item instanceof ChapeuDaMagia)
                 dano +=5;
