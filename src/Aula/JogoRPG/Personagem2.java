@@ -14,7 +14,7 @@ public class Personagem2 extends PersonagemBase{
     public int poderEspecial() {
         if (usosPoderEspecial > 0) {
             usosPoderEspecial--; // Reduzir o número de usos restantes
-            int dano = numeroAleatorio(20, 40);
+            int dano = numeroAleatorio(31, 50);
             for (Item item : inventario) {
                 if (item instanceof TomoAmplificador) {
                     dano *= 2;
@@ -48,7 +48,7 @@ public class Personagem2 extends PersonagemBase{
                 "Qual habilidade deseja utilizar?\n"+
                 "1 - Lâmina Solar\n"+
                 "2 - Raio Fulgurante\n"+
-                "3 - Tempestade de Luz(ESPECIAL!)\n");
+                "3 - Tempestade de Luz(ESPECIAL!)");
         return super.atacar();
     }
     public Personagem2(){

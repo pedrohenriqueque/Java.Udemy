@@ -16,4 +16,18 @@ public abstract class ObstaculoBase implements Obstaculo {
         Random rand = new Random();
         return rand.nextInt((max - min) + 1) + min;
     }
-}
+    public void limparConsole() {
+            try {
+                final String os = System.getProperty("os.name");
+                if (os.contains("Windows")) {
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                } else {
+                    Runtime.getRuntime().exec("clear");
+                }
+            } catch (final Exception e) {
+                System.out.println("Erro ao limpar o console: " + e.getMessage());
+            }
+        }
+    }
+
+

@@ -25,7 +25,7 @@ public class TorreEnfeiticada extends ObstaculoBase {
         for (int i = 1; i <= inimigos.size(); i++) {
             Inimigo a = inimigos.get(i-1);
             if (a.getVida() >= 0) {
-                System.out.println("Inimigo " + i + " Vida: " + a.getVida());
+                System.out.println(i+"- "+ a);
             }
         }
     }
@@ -35,11 +35,12 @@ public class TorreEnfeiticada extends ObstaculoBase {
             do {
                 danoRecebido += personagemBase.atacar();
             } while (danoRecebido <= 0);
-            if(danoRecebido < 14) {
+            if(danoRecebido < 14 || danoRecebido > 30) {
                 for (Inimigo a : inimigos) {
                     a.receberDano(danoRecebido);
                 }
             }else{
+                limparConsole();
                 System.out.println("Escolha um inimigo para atacar");
                     int opcao = escolherInimigo() -1;
                 Inimigo a = inimigos.get(opcao);
@@ -52,6 +53,7 @@ public class TorreEnfeiticada extends ObstaculoBase {
     public void combate(PersonagemBase personagemBase){
         System.out.println("Você chegou a Torre Enfeitiçada!");
         adicionarInimigos(5);
+        vidaInimigos();
         do{
             receberDano(personagemBase);
             interageComPersonagem(personagemBase);
@@ -63,6 +65,7 @@ public class TorreEnfeiticada extends ObstaculoBase {
         public void tomarPocao(PersonagemBase personagemBase) {
             Scanner teclado = new Scanner(System.in);
             boolean passou = false;
+            int numero;
             do {
                 try {
                     System.out.println("Encontrou uma poção misteriosa! Deseja Toma-lá?\n"
@@ -71,12 +74,16 @@ public class TorreEnfeiticada extends ObstaculoBase {
                     switch (opcao) {
                         case 1:
                             System.out.println("Você tomou a poção!");
-                            personagemBase.setCaracteristica(personagemBase.getCaracteristica() - numeroAleatorio(-10, 20));
-                            System.out.println("Sua vida agora é " + personagemBase.getCaracteristica());
+                            numero = numeroAleatorio(-15,30);
+                            personagemBase.setCaracteristica(personagemBase.getCaracteristica() + numero);
+                            if(numero > 0)
+                                System.out.println("SORTE! Você ganhou " + numero +" de vida\n\n");
+                            else
+                                System.out.println("AZAR! Você perdeu " +numero +" de vida\n\n");
                             passou = true;
                             break;
                         case 2:
-                            System.out.println("Você não tomou a poção!");
+                            System.out.println("Você não tomou a poção!\n\n");
                             passou = true;
                             break;
                         default:
