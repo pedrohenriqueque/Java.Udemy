@@ -10,7 +10,7 @@ public abstract class PersonagemBase implements Personagem {
     protected int caracteristica;
     protected int usosPoderEspecial = 1;
 
-    ArrayList<Item> inventario;
+    protected ArrayList<Item> inventario;
 
     public void contarHistoria(){
         System.out.println("Nome: "+getNome() +", Vida: "+getCaracteristica() + ", Idade: "+getIdade());
@@ -96,7 +96,12 @@ public abstract class PersonagemBase implements Personagem {
             System.out.println("Não foi possível atacar, número inválido");
             return -1;
         }
-
     }
-
+    public void morrer(){
+        if(caracteristica <= 0){
+            throw new RuntimeException("Infelizmente, sua jornada chegou a um fim prematuro. O Lorde das Sombras se\n" +
+                    "mostrou um oponente formidável e suas habilidades não foram suficientes para\n" +
+                    "derrotá-lo. Apesar de todos os seus esforços, o reino continua envolto em trevas.");
+        }
+    }
 }

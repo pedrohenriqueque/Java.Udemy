@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class TorreEnfeiticada extends ObstaculoBase {
+public final class TorreEnfeiticada extends ObstaculoBase {
     ArrayList<Inimigo> inimigos;
 
     public void interageComPersonagem(PersonagemBase personagemBase) {
@@ -15,10 +15,6 @@ public class TorreEnfeiticada extends ObstaculoBase {
                 }
             }
             personagemBase.setCaracteristica(personagemBase.getCaracteristica() - danoRecebido);
-            if (personagemBase.getCaracteristica() <= 0)
-                throw new RuntimeException("Infelizmente, sua jornada chegou a um fim prematuro. O Lorde das Sombras se\n" +
-                        "mostrou um oponente formidável e suas habilidades não foram suficientes para\n" +
-                        "derrotá-lo. Apesar de todos os seus esforços, o reino continua envolto em trevas.");
     }
 
     public void vidaInimigos(){
@@ -40,7 +36,6 @@ public class TorreEnfeiticada extends ObstaculoBase {
                     a.receberDano(danoRecebido);
                 }
             }else{
-                limparConsole();
                 System.out.println("Escolha um inimigo para atacar");
                     int opcao = escolherInimigo() -1;
                 Inimigo a = inimigos.get(opcao);
@@ -51,12 +46,13 @@ public class TorreEnfeiticada extends ObstaculoBase {
 
 
     public void combate(PersonagemBase personagemBase){
-        System.out.println("Você chegou a Torre Enfeitiçada!");
-        adicionarInimigos(5);
+        System.out.println("Você chegou +"+getNome() + "!");
+        adicionarInimigos(numeroAleatorio(3,7));
         vidaInimigos();
         do{
             receberDano(personagemBase);
             interageComPersonagem(personagemBase);
+            personagemBase.morrer();
             vidaInimigos();
         } while (!inimigos.isEmpty() && personagemBase.getCaracteristica() > 0);
         System.out.println("Você derrotou todos os inimigos");
@@ -87,10 +83,11 @@ public class TorreEnfeiticada extends ObstaculoBase {
                             passou = true;
                             break;
                         default:
-                            throw new IllegalArgumentException();
+                            throw new InputMismatchException();
                     }
-                } catch (IllegalArgumentException e) {
+                } catch (InputMismatchException e) {
                     System.out.println("Valor Invalido, digite novamente !");
+                    teclado.nextLine();
                 }
             } while (!passou);
         }
@@ -101,14 +98,18 @@ public class TorreEnfeiticada extends ObstaculoBase {
             do{
                 try{
                     opcao = teclado.nextInt();
+                    if(opcao < 1 || opcao > inimigos.size())
+                        throw new InputMismatchException();
                 }catch (InputMismatchException e){
-                    System.out.println("Digite um Numero Valido");
+                    System.out.println("Digite um Numero Válido");
+                    teclado.nextLine();
                 }
-            }while (opcao >= inimigos.size()+1);
+            }while (opcao >= inimigos.size()+1 || opcao <= 0);
             return  opcao;
         }
 
     public TorreEnfeiticada() {
+        setNome("Torre Enfeitiçada");
         inimigos = new ArrayList<>();
     }
 

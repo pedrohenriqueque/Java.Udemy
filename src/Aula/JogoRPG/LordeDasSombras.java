@@ -1,22 +1,23 @@
 package Aula.JogoRPG;
 
-public class LordeDasSombras extends ObstaculoBase{
+public final class LordeDasSombras extends ObstaculoBase{
         int vida;
     public void interageComPersonagem(PersonagemBase personagemBase) {
-        personagemBase.setCaracteristica(personagemBase.getCaracteristica() - numeroAleatorio(7,23));
-        System.out.println("Lorde das Sombras usou sua Habilidade e causou dano ");
-        if(personagemBase.getCaracteristica() <= 0){
-            throw new RuntimeException("Infelizmente, sua jornada chegou a um fim prematuro. O Lorde das Sombras se\n" +
-                    "mostrou um oponente formidável e suas habilidades não foram suficientes para\n" +
-                    "derrotá-lo. Apesar de todos os seus esforços, o reino continua envolto em trevas.");
+        if(vida >= 0) {
+            personagemBase.setCaracteristica(personagemBase.getCaracteristica() - numeroAleatorio(7, 23));
+            System.out.println("Lorde das Sombras usou sua Habilidade e causou dano ");
         }
+
     }
 
-    public void recebeDano(PersonagemBase personagemBase){
+    public void recebeDano(PersonagemBase personagemBase) {
+        int dano;
         do {
-            vida -= personagemBase.atacar();
-        }while (personagemBase.atacar() < 0);
-        if(vida <= 0){
+            dano = personagemBase.atacar();
+            vida -= dano;
+        } while (dano < 0);
+
+        if (vida <= 0) {
             System.out.println("Parabéns, herói! Você foi capaz de superar todos os desafios, derrotar o temível\n" +
                     "Lorde das Sombras e trazer a luz de volta ao reino. Sua coragem, habilidade e\n" +
                     "determinação foram fundamentais para alcançar a vitória.");
@@ -27,8 +28,9 @@ public class LordeDasSombras extends ObstaculoBase{
         do{
             System.out.println(personagemBase.getNome()+" possui " +personagemBase.getCaracteristica());
             System.out.println("Lorde das Sombras possui "+getVida());
-            interageComPersonagem(personagemBase);
             recebeDano(personagemBase);
+            interageComPersonagem(personagemBase);
+            personagemBase.morrer();
         }while (vida > 0 && personagemBase.getCaracteristica() > 0);
     }
     public void setVida(int vida) {
@@ -40,6 +42,7 @@ public class LordeDasSombras extends ObstaculoBase{
     }
 
     public LordeDasSombras(){
+        setNome("Lorde das Sombras");
         setVida(120);
     }
 }

@@ -96,7 +96,6 @@ public class maina {
         }
 
         private static void jogarLabirinto (Personagem personagem){
-            System.out.println("Você chegou ao Labirinto Sombrio");
             LabirintoSombrio labirintoSombrio = new LabirintoSombrio();
             labirintoSombrio.labirinto((PersonagemBase) personagem);
         }

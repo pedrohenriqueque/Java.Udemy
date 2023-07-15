@@ -2,7 +2,7 @@ package Aula.JogoRPG;
 
 import java.util.ArrayList;
 
-public class Personagem1 extends PersonagemBase{
+public final class Personagem1 extends PersonagemBase{
     @Override
     public void contarHistoria(){
         super.contarHistoria();
@@ -32,7 +32,7 @@ public class Personagem1 extends PersonagemBase{
     @Override
     public int ataque1() {
         int dano =super.ataque1();
-        System.out.println("Arthur utilizou sua habilidade Golpe Divino e causou " +dano);
+        System.out.println("Arthur utilizou sua habilidade Golpe Divino e causará " +dano);
         return dano;
     }
 

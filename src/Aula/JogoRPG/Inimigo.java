@@ -9,7 +9,7 @@ import java.util.Random;
 public class Inimigo {
     private int vida;
     private String nome;
-
+    private Random rand = new Random();
     public int getVida() {
         return vida;
     }
@@ -39,7 +39,7 @@ public class Inimigo {
                 +" ,Vida: " +vida;
     }
     public Inimigo(){
-        setVida(35);
+        setVida(rand.nextInt(10)+35);
         setNome(gerarNomeAleatorio());
     }
 

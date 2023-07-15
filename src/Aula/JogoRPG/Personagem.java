@@ -5,6 +5,10 @@ public interface Personagem {
     int poderEspecial();
     void adicionarItem(Item item);
 
+    int atacar();
     int ataque1();
     int ataque2();
+    void morrer();
+    int numeroAleatorio(int min,int max);
+
 }
